@@ -1,0 +1,59 @@
+public class Bingo {
+    public static void main(String[] args) {
+        int[] bolas = {1, 2, 5, 10, 11, 12, 14, 15, 22, 55, 56, 57, 59, 60, 61, 66, 78, 89, 90};
+
+        int[][] carton = {
+                {1, 2, 3, 4},
+                {6, 7, 8, 9},
+                {11, 12, 13, 14, 15},
+                {16, 17, 18, 19},
+                {21, 22, 23, 24},
+                {26, 27, 28, 29, 30},
+                {31, 32, 34, 35},
+                {41, 43, 44, 46},
+                {50, 52, 54, 56}
+        };
+
+        String[] resultados = new String[carton.length];
+
+        // Mostrar por pantalla el contenido del cartón
+        System.out.println("Cartón:");
+        System.out.println(Arrays.deepToString(carton));
+
+        // Mostrar por pantalla la lista de bolas que han salido hasta el momento
+        System.out.println("Bolas:");
+        System.out.println(Arrays.toString(bolas));
+
+        // Recorrer cada fila del cartón
+        int lineas = 0;
+        for (int i = 0; i < carton.length; i++) {
+            boolean completa = true;
+            // Recorrer todos los números que contiene la fila
+            for (int j = 0; j < carton[i].length; j++) {
+                boolean encontrado = false;
+                // Comprobar si ya ha salido el número
+                for (int k = 0; k < bolas.length; k++) {
+                    if (bolas[k] == carton[i][j]) {
+                        encontrado = true;
+                        break;
+                    }
+                }
+                if (!encontrado) {
+                    completa = false;
+                    break;
+                }
+            }
+            if (completa) {
+                resultados[i] = "línea";
+                lineas++;
+            } else {
+                resultados[i] = "no";
+            }
+        }
+
+        // Mostrar por pantalla el array de resultados
+        System.out.println("Resultados:");
+        System.out.println(Arrays.toString(resultados));
+        System.out.println("Líneas completadas: " + lineas);
+    }
+}
